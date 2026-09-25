@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FastResume AI - Build ATS Resume in 60 Seconds</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex flex-col font-sans">
+
+  <!-- Header -->
+  <header class="p-5 border-b border-slate-800 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-indigo-400">FastResume AI</h1>
+    <span class="bg-indigo-600 text-xs px-3 py-1 rounded-full font-semibold">v1.0 MVP</span>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 p-6 max-w-7xl mx-auto w-full">
+    
+    <!-- Left: Input Form -->
+    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-4">
+      <h2 class="text-xl font-semibold border-b border-slate-700 pb-2">1. Enter Details</h2>
+      
+      <div>
+        <label class="block text-sm text-slate-400 mb-1">Full Name</label>
+        <input type="text" id="fullName" placeholder="e.g. Rahul Sharma" class="w-full bg-slate-900 border border-slate-700 rounded p-2 focus:outline-none focus:border-indigo-500">
+      </div>
+
+      <div>
+        <label class="block text-sm text-slate-400 mb-1">Target Job Title</label>
+        <input type="text" id="jobTitle" placeholder="e.g. Web Developer / Sales Executive" class="w-full bg-slate-900 border border-slate-700 rounded p-2 focus:outline-none focus:border-indigo-500">
+      </div>
+
+      <div>
+        <label class="block text-sm text-slate-400 mb-1">Key Skills (Comma separated)</label>
+        <input type="text" id="skills" placeholder="e.g. HTML, Communication, Customer Support" class="w-full bg-slate-900 border border-slate-700 rounded p-2 focus:outline-none focus:border-indigo-500">
+      </div>
+
+      <div>
+        <label class="block text-sm text-slate-400 mb-1">Past Experience / Work Summary</label>
+        <textarea id="experience" rows="4" placeholder="Mention your past roles or projects..." class="w-full bg-slate-900 border border-slate-700 rounded p-2 focus:outline-none focus:border-indigo-500"></textarea>
+      </div>
+
+      <button onclick="generateResume()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg transition duration-200">
+        Generate AI Resume 🚀
+      </button>
+    </div>
+
+    <!-- Right: Output Preview -->
+    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col justify-between">
+      <div>
+        <h2 class="text-xl font-semibold border-b border-slate-700 pb-2 mb-4">2. Generated Resume</h2>
+        <div id="output" class="bg-white text-slate-900 p-6 rounded-lg min-h-[300px] shadow-lg">
+          <p class="text-slate-400 text-center mt-20">Aapka ATS Resume yahan dikhega...</p>
+        </div>
+      </div>
+      
+      <div class="mt-4 flex gap-3">
+        <button class="flex-1 bg-green-600 hover:bg-green-500 py-2 rounded text-center font-medium">Copy Text</button>
+        <button class="flex-1 bg-slate-700 hover:bg-slate-600 py-2 rounded text-center font-medium">Download PDF</button>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function generateResume() {
+      const name = document.getElementById('fullName').value || 'Aapka Naam';
+      const title = document.getElementById('jobTitle').value || 'Job Profile';
+      const skills = document.getElementById('skills').value || 'Skills yahan aayengi';
+      const exp = document.getElementById('experience').value || 'Experience yahan aayega';
+
+      const resumeHTML = `
+        <h1 class="text-2xl font-bold text-slate-900">${name}</h1>
+        <p class="text-indigo-600 font-semibold mb-4">${title}</p>
+        <hr class="mb-4">
+        <h3 class="font-bold text-slate-800">Professional Summary:</h3>
+        <p class="text-sm text-slate-600 mb-4">${exp}</p>
+        <h3 class="font-bold text-slate-800">Key Skills:</h3>
+        <p class="text-sm text-slate-600">${skills}</p>
+      `;
+
+      document.getElementById('output').innerHTML = resumeHTML;
+    }
+  </script>
+</body>
+</html>
